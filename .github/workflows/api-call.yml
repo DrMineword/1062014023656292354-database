@@ -1,19 +1,10 @@
-name: Trigger API on file change
-
-on:
-  push:
-    paths:
-      - 'version.json'
-
-jobs:
-  notify-api:
-    runs-on: ubuntu-latest
-    env:
-      API_URL: ${{ secrets.API_URL }}
-    steps:
-      - name: Call external API
-        run: |
-          echo "Sending request to $API_URL"
-          curl -X POST "$API_URL" \
-            -H "Content-Type: application/json" \
-            -d '{"content": "version.json was updated"}'
+            - name: GitHub API Request
+  # You may pin to the exact commit or the version.
+  # uses: octokit/request-action@7e93b91076fad3920c29d44eb2a6311d929db3dd
+  uses: octokit/request-action@v2.1.0
+  with:
+    # HTTP Verb + path as shown on https://developer.github.com/v3/
+    route: 
+    # Custom media type in the Accept header
+    mediaType: # optional, default is {}
+          
