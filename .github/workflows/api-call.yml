@@ -9,10 +9,10 @@ jobs:
   notify-api:
     runs-on: ubuntu-latest
     env:
-  API_URL: ${{ secrets.API_URL }}
+      API_URL: ${{ secrets.API_URL }}  # <-- this line was mis-indented
     steps:
       - name: Call external API
         run: |
           curl -X POST "$API_URL" \
           -H "Content-Type: application/json" \
-          -d '{"content": "data.json was updated"}'
+          -d '{"content": "version.json was updated"}'
