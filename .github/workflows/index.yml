@@ -1,0 +1,8 @@
+            - name: Index files
+  # You may pin to the exact commit or the version.
+  # uses: prygunov/indexator@5448660d38a2570e6cfbbc9eb15d63b77f384e3c
+  uses: prygunov/indexator@0.1
+  with:
+    # File type (txt or json)
+    file-type: # optional, default is json
+          
