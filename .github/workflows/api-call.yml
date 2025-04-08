@@ -3,16 +3,17 @@ name: Trigger API on file change
 on:
   push:
     paths:
-      - 'version.json' # adjust to the file(s) you want to monitor
+      - 'version.json'
 
 jobs:
   notify-api:
     runs-on: ubuntu-latest
     env:
-      API_URL: ${{ secrets.API_URL }}  # <-- this line was mis-indented
+      API_URL: ${{ secrets.API_URL }}
     steps:
       - name: Call external API
         run: |
+          echo "Sending request to $API_URL"
           curl -X POST "$API_URL" \
-          -H "Content-Type: application/json" \
-          -d '{"content": "version.json was updated"}'
+            -H "Content-Type: application/json" \
+            -d '{"content": "version.json was updated"}'
