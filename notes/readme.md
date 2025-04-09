@@ -12,7 +12,8 @@
 
 ```((900000/6000)+(0*0.1))*(1+0.6+0.35) = 292.5```
 
-Message to user```
+Message to user
+```
 For your contribution during the last rs or drs mission
 Our federation gives you the following reward x {economy_points_name}
 
