@@ -11,3 +11,17 @@
 - Example for rs6 no rs event 900000 ms (15 mins) star life time
 
 ```((900000/6000)+(0*0.1))*(1+0.6+0.35) = 292.5```
+
+Message to user```
+For your contribution during the last rs or drs mission
+Our federation gives you the following reward x {economy_points_name}
+
+From the mathematical formula:
+- Star Lifespan Points:
+(ms/6000) = result
+- RS Event Bonus:
++(score\*0.1)
+- Multipliers:
+-# (base+rs_lvl+type\_bonus)
+x(x¹+x²+x³)
+```
