@@ -1,5 +1,5 @@
 {
-  "msg":"-# ||@here||\nCurrent system version `$version`\n\n**This is your beloved server developer announcement system**\n\nMy scans show that <@&1244749628994490429> has made changes to the system\n\n-# Read more below",
+  "msg":"-# ||@here||\nCurrent system version `$version`\n\n**This is your beloved server developer announcement system**\n\nMy scans show that <@&1244749628994490429> or <@&1116913583876489326> has made changes to the system or config files",
   "name":"[INFO SCANNER]",
   "url":"https://raw.githubusercontent.com/DrMineword/1045060846654603305_bot_images/refs/heads/master/src/img/game/SpaceBuildings/station_RedStarScanner.png",
   "banner":"https://raw.githubusercontent.com/DrMineword/1045060846654603305_bot_images/refs/heads/master/src/img/game/portraits/news_Update01.png",
