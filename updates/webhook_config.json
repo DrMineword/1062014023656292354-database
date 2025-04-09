@@ -1,5 +1,7 @@
-{"msg":"$version",
+{
+  "msg":"$version",
   "name":"[INFO SCANNER]",
   "url":"https://raw.githubusercontent.com/DrMineword/1045060846654603305_bot_images/refs/heads/master/src/img/game/SpaceBuildings/station_RedStarScanner.png",
-  "banner":"https://raw.githubusercontent.com/DrMineword/1045060846654603305_bot_images/refs/heads/master/src/img/game/portraits/news_Update01.png"
+  "banner":"https://raw.githubusercontent.com/DrMineword/1045060846654603305_bot_images/refs/heads/master/src/img/game/portraits/news_Update01.png",
+  "page":"https://drmineword.github.io/1062014023656292354-database"
 }
