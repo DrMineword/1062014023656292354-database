@@ -1,0 +1,21 @@
+{
+    "star_life_time": {
+        "divide_value": "6000"
+    },
+    "rs_event_bonus": {
+        "divide_value": "0.1"
+    },
+    "multipliers": {
+        "base": "1"
+    },
+    "economy": {
+        "name": "GigaPoints",
+        "full_name": "GigaPoints<:GigaPoints:1359234808471093519>",
+        "icons": {
+            "emoji": "<:GigaPoints:1359234808471093519>",
+            "icon_url": "placeholder",
+            "icon_url_news": "placeholder",
+            "emoji_news": "<:GigaPointsPing:1359234737062936576>"
+        }
+    }
+}
