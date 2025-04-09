@@ -1,4 +1,6 @@
-I'm starting, logs:
+I am running the first version of the system **⬜⬜⬜⬜**
+The operation was successful
+Printing "LOGS"
 ```diff
 +Initiating commit
 # Success
@@ -9,3 +11,5 @@ I'm starting, logs:
 ```
 43 6F 6D 69 6E 67 20 61 74 20 74 68 65 20 65 6E 64 20 6F 66 20 74 68 69 73 20 77 65 65 6B 2C 20 73 74 61 79 20 74 75 6E 65 64
 ```
+
+>>> Failure: Session Termination
