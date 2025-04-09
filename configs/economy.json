@@ -13,8 +13,8 @@
         "full_name": "GigaPoints<:GigaPoints:1359234808471093519>",
         "icons": {
             "emoji": "<:GigaPoints:1359234808471093519>",
-            "icon_url": "placeholder",
-            "icon_url_news": "placeholder",
+            "icon_url": "https://drmineword.github.io/1062014023656292354-database/configs/eco_icons/GigaPoints.png",
+            "icon_url_news": "https://drmineword.github.io/1062014023656292354-database/configs/eco_icons/pinged-image.png",
             "emoji_news": "<:GigaPointsPing:1359234737062936576>"
         }
     }
