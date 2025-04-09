@@ -21,8 +21,13 @@ From the mathematical formula:
 - Star Lifespan Points:
 (ms/6000) = result
 - RS Event Bonus:
-+(score\*0.1)
+(score\*0.1) = result
+
+- Final points:
+(life_time+rs_event)
+
 - Multipliers:
 -# (base+rs_lvl+type\_bonus)
 x(x¹+x²+x³)
+
 ```
