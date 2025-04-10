@@ -1,4 +1,1 @@
-- Channel <#1359891056463839474> added as a separate channel for announcements
-- This message mention members now
-- Several github events are now announced here
-- Need to minimize the number of times this message is sent
+Rename ut5kimbkxl1b1.png to ut5kimbkxl1b1.png - DrMineword
