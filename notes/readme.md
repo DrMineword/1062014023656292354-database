@@ -31,3 +31,17 @@ From the mathematical formula:
 x(x¹+x²+x³)
 
 ```
+
+
+
+
+
+
+
+
+
+------
+
+Use functions to common things like
+Logs webhook, user id to icon url
+etc
