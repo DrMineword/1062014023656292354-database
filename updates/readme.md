@@ -1,6 +1,4 @@
-Moving the project to indev
-The files needed for work will be uploaded to github
-
-Getting ready to work on the API system
-
-Additionally, attempting to add first officer ranked people to manage files on github
+- Channel <#1359891056463839474> added as a separate channel for announcements
+- This message mention members now
+- Several github events are now announced here
+- Need to minimize the number of times this message is sent
