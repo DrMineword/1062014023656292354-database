@@ -9,7 +9,8 @@
     "s200": "48896",
     "start": "7733332",
     "end": "7745658",
-    "fail":"0"
+    "fail":"0",
+    "user":"4892838"
   },
   "type": {
     "warn": ": WARN",
@@ -19,6 +20,7 @@
     "s200": null,
     "end": ": END",
     "start": ": START",
-    "fail":": FAIL"
+    "fail":": FAIL",
+    "user":": !USER {}!"
   }
 }
