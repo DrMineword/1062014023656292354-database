@@ -6,4 +6,11 @@
 "new":"4653169",
 "normal":"16777133",
 "s200":"48896"
+},
+"type":{
+"warn":": WARN",
+"fatal":": FATAL",
+"new": null,
+"normal": null,
+"s200":" null
 }}
