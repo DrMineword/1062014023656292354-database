@@ -8,7 +8,8 @@
     "normal": "16777133",
     "s200": "48896",
     "start": "7733332",
-    "end": "7745658"
+    "end": "7745658",
+    "fail":"0"
   },
   "type": {
     "warn": ": WARN",
@@ -17,6 +18,7 @@
     "normal": null,
     "s200": null,
     "end": ": END",
-    "start": ": START"
+    "start": ": START",
+    "fail":": FAIL"
   }
 }
