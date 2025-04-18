@@ -1,159 +1,117 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dynamic Leaderboard</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      background: #f9f9f9;
-      margin: 0;
-      padding: 1rem;
-    }
+<script>
+  const b64 = document.getElementById("data-b64").textContent.trim();
+  const jsonStr = atob(b64);
+  const data = JSON.parse(jsonStr);
 
-    h1 {
-      text-align: center;
-      margin-bottom: 1rem;
-    }
+  const table = document.getElementById("leaderboard");
+  const thead = table.querySelector("thead tr");
+  const tbody = table.querySelector("tbody");
 
-    .table-container {
-      overflow-x: auto;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      background: #fff;
-      border-radius: 12px;
-    }
+  const excludeFields = ["discord", "dc_id", "created_at", "last_edit", "last_edit_ms"];
+  const keys = Object.keys(data[0]).filter(key => !excludeFields.includes(key));
+  
+  let currentSort = { key: null, dir: 1 };
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 600px;
-    }
+  function renderTable(sortKey = null, direction = 1) {
+    tbody.innerHTML = "";
 
-    th, td {
-      padding: 0.8rem 1rem;
-      border-bottom: 1px solid #eee;
-      text-align: left;
-      white-space: nowrap;
-    }
+    let sorted = [...data];
+    if (sortKey) {
+      sorted.sort((a, b) => {
+        let A = a[sortKey];
+        let B = b[sortKey];
 
-    th {
-      background-color: #007acc;
-      color: white;
-      cursor: pointer;
-      position: relative;
-    }
+        A = typeof A === "string" ? A.toLowerCase() : A;
+        B = typeof B === "string" ? B.toLowerCase() : B;
 
-    th .sort-arrow {
-      font-size: 0.8em;
-      margin-left: 5px;
-    }
+        if (typeof A === "number" && typeof B === "number") return (A - B) * direction;
+        if (!isNaN(parseFloat(A)) && !isNaN(parseFloat(B))) return (parseFloat(A) - parseFloat(B)) * direction;
 
-    tr:hover {
-      background-color: #f2f2f2;
-    }
-
-    @media screen and (max-width: 768px) {
-      th, td {
-        padding: 0.6rem;
-        font-size: 0.9rem;
-      }
-    }
-  </style>
-</head>
-<body>
-  <h1>Leaderboard</h1>
-  <div class="table-container">
-    <table id="leaderboard">
-      <thead><tr></tr></thead>
-      <tbody></tbody>
-    </table>
-  </div>
-
-  <!-- Base64-encoded JSON data -->
-  <script type="application/json" id="data-b64">
-    W3siaWQiOjEsImNyZWF0ZWRfYXQiOjE3NDQ5MDI3OTQyNTQsIm1pc3Npb25zX3JzIjoyLCJtaXNzaW9uc193cyI6MCwiTmFtZSI6IkRyTWluZXdvcmQiLCJoc19pZCI6IjNkNzY5YWRkYzQwZjYyNGJhYmRmN2U0NjhhNzIyNTEwNjk2MjhjMDc3YmE4OWU3YjQyNmY5ZjgzOTZlYTQ0YzQiLCJkaXNjb3JkIjoieWVzIiwiZGNfaWQiOiI5ODcyODQ3OTY3ODkxMTY5NDkiLCJlY29fcG9pbnRzIjoiMTcyMS4yNSIsInRvdGFsX3JzX3BvaW50cyI6IjAiLCJtc19pbl9ycyI6MTc2NjAwMCwibXNfaW5fd3MiOjAsIml0ZW1fZm91bmQiOlsiVGhlIEZpcnN0IE1lcmNlbmFyeSBCYWRnZSJdLCJsYXN0X2VkaXQiOjE3NDQ5MDQ1NDQxNjgsImxhc3RfZWRpdF9tcyI6IjE3NDQ5MDQ1NDQxNjgifV0=
-  </script>
-
-  <script>
-    const b64 = document.getElementById("data-b64").textContent.trim();
-    const jsonStr = atob(b64);
-    const data = JSON.parse(jsonStr);
-    const table = document.getElementById("leaderboard");
-    const thead = table.querySelector("thead tr");
-    const tbody = table.querySelector("tbody");
-
-    const keys = Object.keys(data[0]);
-    let currentSort = { key: null, dir: 1 };
-
-    function renderTable(sortKey = null, direction = 1) {
-      tbody.innerHTML = "";
-
-      let sorted = [...data];
-      if (sortKey) {
-        sorted.sort((a, b) => {
-          let A = a[sortKey];
-          let B = b[sortKey];
-
-          // Normalize strings, numbers
-          A = typeof A === "string" ? A.toLowerCase() : A;
-          B = typeof B === "string" ? B.toLowerCase() : B;
-
-          if (typeof A === "number" && typeof B === "number") return (A - B) * direction;
-          if (!isNaN(parseFloat(A)) && !isNaN(parseFloat(B))) return (parseFloat(A) - parseFloat(B)) * direction;
-
-          if (Array.isArray(A) && Array.isArray(B)) return (A.length - B.length) * direction;
-          if (A < B) return -1 * direction;
-          if (A > B) return 1 * direction;
-          return 0;
-        });
-      }
-
-      for (const item of sorted) {
-        const row = document.createElement("tr");
-        for (const key of keys) {
-          const val = Array.isArray(item[key]) ? item[key].join(", ") : item[key];
-          row.innerHTML += `<td>${val}</td>`;
-        }
-        tbody.appendChild(row);
-      }
-    }
-
-    function renderHeader() {
-      thead.innerHTML = "";
-      keys.forEach(key => {
-        const th = document.createElement("th");
-        const label = document.createElement("span");
-        label.textContent = key;
-
-        const arrow = document.createElement("span");
-        arrow.className = "sort-arrow";
-
-        if (currentSort.key === key) {
-          arrow.textContent = currentSort.dir === 1 ? " ⏫" : " ⏬";
-        }
-
-        th.appendChild(label);
-        th.appendChild(arrow);
-
-        th.addEventListener("click", () => {
-          if (currentSort.key === key) {
-            currentSort.dir *= -1;
-          } else {
-            currentSort.key = key;
-            currentSort.dir = 1;
-          }
-          renderHeader();
-          renderTable(currentSort.key, currentSort.dir);
-        });
-
-        thead.appendChild(th);
+        if (Array.isArray(A) && Array.isArray(B)) return (A.length - B.length) * direction;
+        if (A < B) return -1 * direction;
+        if (A > B) return 1 * direction;
+        return 0;
       });
     }
 
-    // Init
-    renderHeader();
-    renderTable();
-  </script>
-</body>
-</html>
+    for (const item of sorted) {
+      const row = document.createElement("tr");
+      for (const key of keys) {
+        const cell = document.createElement("td");
+        let val = item[key];
+
+        if (key === "item_found" && Array.isArray(val)) {
+          if (val.length > 1) {
+            const preview = document.createElement("span");
+            preview.textContent = `🔎 [${val.length} items]`;
+            preview.style.cursor = "pointer";
+            preview.style.color = "#007acc";
+            preview.style.textDecoration = "underline";
+
+            const list = document.createElement("ul");
+            list.style.margin = "0.5em 0 0 0";
+            list.style.paddingLeft = "1em";
+            list.style.display = "none";
+            list.style.listStyle = "disc";
+            list.style.fontSize = "0.9em";
+
+            val.forEach(v => {
+              const li = document.createElement("li");
+              li.textContent = v;
+              list.appendChild(li);
+            });
+
+            preview.addEventListener("click", () => {
+              list.style.display = list.style.display === "none" ? "block" : "none";
+            });
+
+            cell.appendChild(preview);
+            cell.appendChild(list);
+          } else {
+            cell.textContent = val[0] || "";
+          }
+        } else {
+          cell.textContent = Array.isArray(val) ? val.join(", ") : val;
+        }
+
+        row.appendChild(cell);
+      }
+      tbody.appendChild(row);
+    }
+  }
+
+  function renderHeader() {
+    thead.innerHTML = "";
+    keys.forEach(key => {
+      const th = document.createElement("th");
+      const label = document.createElement("span");
+      label.textContent = key;
+
+      const arrow = document.createElement("span");
+      arrow.className = "sort-arrow";
+
+      if (currentSort.key === key) {
+        arrow.textContent = currentSort.dir === 1 ? " ⏫" : " ⏬";
+      }
+
+      th.appendChild(label);
+      th.appendChild(arrow);
+
+      th.addEventListener("click", () => {
+        if (currentSort.key === key) {
+          currentSort.dir *= -1;
+        } else {
+          currentSort.key = key;
+          currentSort.dir = 1;
+        }
+        renderHeader();
+        renderTable(currentSort.key, currentSort.dir);
+      });
+
+      thead.appendChild(th);
+    });
+  }
+
+  renderHeader();
+  renderTable();
+</script>
