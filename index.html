@@ -1,1 +1,196 @@
-<p>TEMPONARY</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Leaderboard</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 1rem;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background: #fff;
+      border-radius: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+    }
+
+    th, td {
+      padding: 0.8rem 1rem;
+      border-bottom: 1px solid #eee;
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    th {
+      background-color: #007acc;
+      color: white;
+      cursor: pointer;
+      position: relative;
+    }
+
+    th .sort-arrow {
+      font-size: 0.8em;
+      margin-left: 5px;
+    }
+
+    tr:hover {
+      background-color: #f2f2f2;
+    }
+
+    @media screen and (max-width: 768px) {
+      th, td {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Leaderboard</h1>
+  <div class="table-container">
+    <table id="leaderboard">
+      <thead><tr></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <!-- Place your Base64-encoded JSON inside the script tag below -->
+  <script type="application/json" id="data-b64">
+W3siaWQiOjEsImNyZWF0ZWRfYXQiOjE3NDQ5MDI3OTQyNTQsIm1pc3Npb25zX3JzIjoyLCJtaXNzaW9uc193cyI6MCwiTmFtZSI6IkRyTWluZXdvcmQiLCJoc19pZCI6IjNkNzY5YWRkYzQwZjYyNGJhYmRmN2U0NjhhNzIyNTEwNjk2MjhjMDc3YmE4OWU3YjQyNmY5ZjgzOTZlYTQ0YzQiLCJkaXNjb3JkIjoieWVzIiwiZGNfaWQiOiI5ODcyODQ3OTY3ODkxMTY5NDkiLCJlY29fcG9pbnRzIjoiMTcyMS4yNSIsInRvdGFsX3JzX3BvaW50cyI6IjAiLCJtc19pbl9ycyI6MTc2NjAwMCwibXNfaW5fd3MiOjAsIml0ZW1fZm91bmQiOlsiVGhlIEZpcnN0IE1lcmNlbmFyeSBCYWRnZSJdLCJsYXN0X2VkaXQiOjE3NDQ5MDQ1NDQxNjgsImxhc3RfZWRpdF9tcyI6IjE3NDQ5MDQ1NDQxNjgifSx7ImlkIjoyLCJjcmVhdGVkX2F0IjoxNzQ0OTI4NjUxMjI2LCJtaXNzaW9uc19ycyI6MSwibWlzc2lvbnNfd3MiOjAsIk5hbWUiOiJCw7Zya0LDtnJrQsO2cmsiLCJoc19pZCI6IjNiOTg4NjliZGZhZDJjM2VkZjg4Y2EyYThlZjA4M2Q0OTcxOTgzNDA1Y2UzZmEzNDljYjA0ZTNjYTcwOGVmMzMiLCJkaXNjb3JkIjoibm8iLCJkY19pZCI6bnVsbCwiZWNvX3BvaW50cyI6IjU4NSIsInRvdGFsX3JzX3BvaW50cyI6IjAiLCJtc19pbl9ycyI6NTk4MDAwLCJtc19pbl93cyI6MCwiaXRlbV9mb3VuZCI6WyJUaGUgTWVyY2VuYXJ5IEJhZGdlIl0sImxhc3RfZWRpdCI6MTc0NDkyOTI2NjE5NiwibGFzdF9lZGl0X21zIjoiMTc0NDkyOTI2NjE5NiJ9LHsiaWQiOjQsImNyZWF0ZWRfYXQiOjE3NDQ5NDk5MjgyNDgsIm1pc3Npb25zX3JzIjoxLCJtaXNzaW9uc193cyI6MCwiTmFtZSI6IndoeXdoeXdoeXdoeXl5eXkiLCJoc19pZCI6IjQzODE2ODMxMmMzMDJiNTk2YTA1MzViMmFhNzhmY2FkZDIwYTdhYzQ5ZDVhYzZlYjQ5Yzg1NjIyMmZiNTZkMTIiLCJkaXNjb3JkIjoibm8iLCJkY19pZCI6bnVsbCwiZWNvX3BvaW50cyI6IjU4NSIsInRvdGFsX3JzX3BvaW50cyI6IjAiLCJtc19pbl9ycyI6NTk5MDAwLCJtc19pbl93cyI6MCwiaXRlbV9mb3VuZCI6WyJUaGUgTWVyY2VuYXJ5IEJhZGdlIl0sImxhc3RfZWRpdCI6MTc0NDk1MDUyMDc4MywibGFzdF9lZGl0X21zIjoiMTc0NDk1MDUyMDc4MyJ9LHsiaWQiOjUsImNyZWF0ZWRfYXQiOjE3NDQ5NTA1MTk5NzAsIm1pc3Npb25zX3JzIjoxLCJtaXNzaW9uc193cyI6MCwiTmFtZSI6Ikthc2V5IiwiaHNfaWQiOiJmY2EwM2UwM2UyNmRkYjA0MTU3ZWMxM2IxMGRjODY5ZTQyMjUzN2U0ZGZiZjY5YTNjZmE4M2EwYzJjYmIwN2Q1IiwiZGlzY29yZCI6Im5vIiwiZGNfaWQiOm51bGwsImVjb19wb2ludHMiOiI1ODUiLCJ0b3RhbF9yc19wb2ludHMiOiIwIiwibXNfaW5fcnMiOjU5OTAwMCwibXNfaW5fd3MiOjAsIml0ZW1fZm91bmQiOlsiVGhlIE1lcmNlbmFyeSBCYWRnZSJdLCJsYXN0X2VkaXQiOjE3NDQ5NTA1MjA4NTcsImxhc3RfZWRpdF9tcyI6IjE3NDQ5NTA1MjA4NTcifSx7ImlkIjo2LCJjcmVhdGVkX2F0IjoxNzQ0OTUzNDE1ODYwLCJtaXNzaW9uc19ycyI6MSwibWlzc2lvbnNfd3MiOjAsIk5hbWUiOiJraXJzNzM0IiwiaHNfaWQiOiJjYjRhYjFiYjE1YTA0NzAzMmEzYjk3NTA1ZDRjOGYxN2MzNDJhOWVmZGUzYTllZmFjMDIyNDNkZWEyMGRhZjg0IiwiZGlzY29yZCI6InllcyIsImRjX2lkIjoiMTIwNDA4OTY1ODc1Mzk0OTcyNiIsImVjb19wb2ludHMiOiI1ODUiLCJ0b3RhbF9yc19wb2ludHMiOiIwIiwibXNfaW5fcnMiOjU5OTAwMCwibXNfaW5fd3MiOjAsIml0ZW1fZm91bmQiOlsiVGhlIE1lcmNlbmFyeSBCYWRnZSJdLCJsYXN0X2VkaXQiOjE3NDQ5NTQwMjMyMzIsImxhc3RfZWRpdF9tcyI6IjE3NDQ5NTQwMjMyMzIifSx7ImlkIjozLCJjcmVhdGVkX2F0IjoxNzQ0OTI4NjUyNTIxLCJtaXNzaW9uc19ycyI6MiwibWlzc2lvbnNfd3MiOjAsIk5hbWUiOiJCw7ZyayIsImhzX2lkIjoiYmM2ZDA5NGY2MDEwMTdjMWIyOTA1YzYzMWI2ZTk0YjA1MzQyMGVjZTlhMzAwYjY4NWM5MmU1NGU1YmY4MjExOCIsImRpc2NvcmQiOiJubyIsImRjX2lkIjpudWxsLCJlY29fcG9pbnRzIjoiMTE3MCIsInRvdGFsX3JzX3BvaW50cyI6IjAiLCJtc19pbl9ycyI6MTE5NzAwMCwibXNfaW5fd3MiOjAsIml0ZW1fZm91bmQiOlsiVGhlIE1lcmNlbmFyeSBCYWRnZSJdLCJsYXN0X2VkaXQiOjE3NDQ5NTQwMjM2ODksImxhc3RfZWRpdF9tcyI6IjE3NDQ5NTQwMjM2ODkifV0=
+  </script>
+
+  <script>
+    const b64 = document.getElementById("data-b64").textContent.trim();
+    const jsonStr = atob(b64);
+    const data = JSON.parse(jsonStr);
+
+    const table = document.getElementById("leaderboard");
+    const thead = table.querySelector("thead tr");
+    const tbody = table.querySelector("tbody");
+
+    const excludeFields = ["discord", "dc_id", "created_at", "last_edit", "last_edit_ms"];
+    const keys = Object.keys(data[0]).filter(key => !excludeFields.includes(key));
+    
+    let currentSort = { key: null, dir: 1 };
+
+    function renderTable(sortKey = null, direction = 1) {
+      tbody.innerHTML = "";
+
+      let sorted = [...data];
+      if (sortKey) {
+        sorted.sort((a, b) => {
+          let A = a[sortKey];
+          let B = b[sortKey];
+
+          A = typeof A === "string" ? A.toLowerCase() : A;
+          B = typeof B === "string" ? B.toLowerCase() : B;
+
+          if (typeof A === "number" && typeof B === "number") return (A - B) * direction;
+          if (!isNaN(parseFloat(A)) && !isNaN(parseFloat(B))) return (parseFloat(A) - parseFloat(B)) * direction;
+
+          if (Array.isArray(A) && Array.isArray(B)) return (A.length - B.length) * direction;
+          if (A < B) return -1 * direction;
+          if (A > B) return 1 * direction;
+          return 0;
+        });
+      }
+
+      for (const item of sorted) {
+        const row = document.createElement("tr");
+        for (const key of keys) {
+          const cell = document.createElement("td");
+          let val = item[key];
+
+          if (key === "item_found" && Array.isArray(val)) {
+            if (val.length > 1) {
+              const preview = document.createElement("span");
+              preview.textContent = `🔎 [${val.length} items]`;
+              preview.style.cursor = "pointer";
+              preview.style.color = "#007acc";
+              preview.style.textDecoration = "underline";
+
+              const list = document.createElement("ul");
+              list.style.margin = "0.5em 0 0 0";
+              list.style.paddingLeft = "1em";
+              list.style.display = "none";
+              list.style.listStyle = "disc";
+              list.style.fontSize = "0.9em";
+
+              val.forEach(v => {
+                const li = document.createElement("li");
+                li.textContent = v;
+                list.appendChild(li);
+              });
+
+              preview.addEventListener("click", () => {
+                list.style.display = list.style.display === "none" ? "block" : "none";
+              });
+
+              cell.appendChild(preview);
+              cell.appendChild(list);
+            } else {
+              cell.textContent = val[0] || "";
+            }
+          } else {
+            cell.textContent = Array.isArray(val) ? val.join(", ") : val;
+          }
+
+          row.appendChild(cell);
+        }
+        tbody.appendChild(row);
+      }
+    }
+
+    function renderHeader() {
+      thead.innerHTML = "";
+      keys.forEach(key => {
+        const th = document.createElement("th");
+        const label = document.createElement("span");
+        label.textContent = key;
+
+        const arrow = document.createElement("span");
+        arrow.className = "sort-arrow";
+
+        if (currentSort.key === key) {
+          arrow.textContent = currentSort.dir === 1 ? " ⏫" : " ⏬";
+        }
+
+        th.appendChild(label);
+        th.appendChild(arrow);
+
+        th.addEventListener("click", () => {
+          if (currentSort.key === key) {
+            currentSort.dir *= -1;
+          } else {
+            currentSort.key = key;
+            currentSort.dir = 1;
+          }
+          renderHeader();
+          renderTable(currentSort.key, currentSort.dir);
+        });
+
+        thead.appendChild(th);
+      });
+    }
+
+    renderHeader();
+    renderTable();
+  </script>
+</body>
+</html>
