@@ -1,1 +1,77 @@
-<p>No</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Leaderboard</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f2f2f2;
+      padding: 2em;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 1em;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+    th {
+      background-color: #007acc;
+      color: white;
+    }
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+  </style>
+</head>
+<body>
+  <h1>Eco Points Leaderboard</h1>
+  <table id="leaderboard">
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Name</th>
+        <th>Eco Points</th>
+        <th>RS Missions</th>
+        <th>Items Found</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <!-- Base64 JSON Data -->
+  <script type="application/json" id="data-b64">
+    W3siaWQiOjEsImNyZWF0ZWRfYXQiOjE3NDQ5MDI3OTQyNTQsIm1pc3Npb25zX3JzIjoyLCJtaXNzaW9uc193cyI6MCwiTmFtZSI6IkRyTWluZXdvcmQiLCJoc19pZCI6IjNkNzY5YWRkYzQwZjYyNGJhYmRmN2U0NjhhNzIyNTEwNjk2MjhjMDc3YmE4OWU3YjQyNmY5ZjgzOTZlYTQ0YzQiLCJkaXNjb3JkIjoieWVzIiwiZGNfaWQiOiI5ODcyODQ3OTY3ODkxMTY5NDkiLCJlY29fcG9pbnRzIjoiMTcyMS4yNSIsInRvdGFsX3JzX3BvaW50cyI6IjAiLCJtc19pbl9ycyI6MTc2NjAwMCwibXNfaW5fd3MiOjAsIml0ZW1fZm91bmQiOlsiVGhlIEZpcnN0IE1lcmNlbmFyeSBCYWRnZSJdLCJsYXN0X2VkaXQiOjE3NDQ5MDQ1NDQxNjgsImxhc3RfZWRpdF9tcyI6IjE3NDQ5MDQ1NDQxNjgifV0=
+  </script>
+
+  <!-- JavaScript -->
+  <script>
+    const b64 = document.getElementById("data-b64").textContent.trim();
+    const jsonStr = atob(b64);
+    const data = JSON.parse(jsonStr);
+
+    // Sort by eco_points descending
+    data.sort((a, b) => parseFloat(b.eco_points) - parseFloat(a.eco_points));
+
+    const tbody = document.querySelector("#leaderboard tbody");
+
+    data.forEach((user, index) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${index + 1}</td>
+        <td>${user.Name}</td>
+        <td>${user.eco_points}</td>
+        <td>${user.missions_rs}</td>
+        <td>${user.item_found.join(", ")}</td>
+      `;
+      tbody.appendChild(row);
+    });
+  </script>
+</body>
+</html>
