@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:type" content="website">
-<meta content="Adssssssssssssssss" property="og:title" />
-<meta content="#6e7df5" data-react-helmet="true" name="theme-color" />
-   <meta property="og:description" content="Albion Online is a sandbox MMO RPG where you write your own story instead of following a set path.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta property="og:type" content="website" />
+  <meta content="Adssssssssssssssss" property="og:title" />
+  <meta content="#6e7df5" name="theme-color" />
+  <meta property="og:description" content="Albion Online is a sandbox MMO RPG where you write your own story instead of following a set path." />
   <title>Watch to Earn</title>
   <style>
     body {
@@ -34,8 +34,12 @@
       try {
         const response = await fetch('https://drmineword.github.io/1062014023656292354-database/ad/index.json');
         const ad = await response.json();
+        console.log("Ad data loaded:", ad);
 
         const contentDiv = document.getElementById('content');
+
+        if (!ad.file_base64) throw new Error("Missing base64 file data");
+
         const byteCharacters = atob(ad.file_base64);
         const byteArrays = [];
 
@@ -44,11 +48,13 @@
         }
 
         const byteData = new Uint8Array(byteArrays);
-        const mimeType = ad.type.toLowerCase() === 'video' ? 'video/mp4' : 'image/gif';
+        const isVideo = ad.type.toLowerCase() === 'video';
+        const mimeType = isVideo ? 'video/mp4' : 'image/gif';
+
         const blob = new Blob([byteData], { type: mimeType });
         const url = URL.createObjectURL(blob);
+        console.log("Created media URL:", url, "Mime type:", mimeType);
 
-        const isVideo = ad.type.toLowerCase() === 'video';
         const media = document.createElement(isVideo ? 'video' : 'img');
         media.src = url;
 
@@ -59,20 +65,48 @@
           media.controls = false;
           media.autoplay = true;
           media.playsInline = true;
+          media.muted = true; // helps autoplay on mobile
           media.disablePictureInPicture = true;
+
           media.addEventListener('contextmenu', e => e.preventDefault());
-          media.onended = () => sendWebhook(ad);
+
+          media.addEventListener('loadedmetadata', () => {
+            console.log("Video duration:", media.duration, "seconds");
+            let timeLeft = media.duration;
+            const interval = setInterval(() => {
+              if (!media.paused && !media.ended) {
+                timeLeft = media.duration - media.currentTime;
+                console.log("⏱️ Remaining time:", timeLeft.toFixed(2), "s");
+              }
+            }, 1000);
+
+            media.addEventListener('ended', () => {
+              clearInterval(interval);
+              console.log("✅ Video ended. Sending webhook...");
+              sendWebhook(ad);
+            });
+          });
         } else {
-          media.onload = async () => {
+          media.onload = () => {
             const duration = estimateGifDuration(byteData);
             console.log(`Estimated GIF duration: ${duration}ms`);
-            setTimeout(() => sendWebhook(ad), duration);
+            let secondsLeft = duration / 1000;
+            const gifInterval = setInterval(() => {
+              console.log("⏱️ GIF remaining:", secondsLeft--, "s");
+              if (secondsLeft <= 0) {
+                clearInterval(gifInterval);
+              }
+            }, 1000);
+            setTimeout(() => {
+              console.log("✅ GIF finished. Sending webhook...");
+              sendWebhook(ad);
+            }, duration);
           };
         }
 
       } catch (error) {
         document.getElementById('content').innerText = '❌ Failed to load ad.';
-        console.error(error);
+        console.error("Error loading ad:", error);
       }
     }
 
@@ -82,43 +116,47 @@
     }
 
     function sendWebhook(ad) {
-      const id = getIdParam();
-      const webhookURL = atob(atob(ad.webhook));
+      try {
+        const id = getIdParam();
+        const webhookURL = atob(atob(ad.webhook));
+        const payload = {
+          id,
+          reward: ad.reward
+        };
 
-      const payload = {
-        id,
-        reward: ad.reward
-      };
+        const formData = new FormData();
+        const jsonBlob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+        formData.append('file', jsonBlob, 'reward_data.json');
+        formData.append('content', `🎁 User watched ad. Reward: ${ad.reward}`);
 
-      const formData = new FormData();
-      const jsonBlob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
-      formData.append('file', jsonBlob, 'reward_data.json');
-      formData.append('content', `🎁 User watched ad. Reward: ${ad.reward}`);
-
-      fetch(webhookURL, {
-        method: 'POST',
-        body: formData
-      })
-      .then(() => {
-        document.getElementById('content').innerHTML = '<h2>✅ Reward sent via Discord!</h2>';
-      })
-      .catch((err) => {
-        console.error(err);
-        document.getElementById('content').innerHTML = '<h2>❌ Failed to send to Discord.</h2>';
-      });
+        console.log("Sending webhook to:", webhookURL);
+        fetch(webhookURL, {
+          method: 'POST',
+          body: formData
+        })
+        .then(() => {
+          document.getElementById('content').innerHTML = '<h2>✅ Reward sent via Discord!</h2>';
+          console.log("✅ Webhook sent.");
+        })
+        .catch((err) => {
+          console.error("❌ Failed to send webhook:", err);
+          document.getElementById('content').innerHTML = '<h2>❌ Failed to send to Discord.</h2>';
+        });
+      } catch (err) {
+        console.error("Webhook error:", err);
+      }
     }
 
-    // Estimate total duration of GIF from binary data (in ms)
     function estimateGifDuration(byteArray) {
       let duration = 0;
       for (let i = 0; i < byteArray.length - 9; i++) {
         if (byteArray[i] === 0x21 && byteArray[i + 1] === 0xF9 && byteArray[i + 2] === 0x04) {
           const delay = byteArray[i + 4] + (byteArray[i + 5] << 8);
-          duration += delay * 10; // 1 unit = 10ms
+          duration += delay * 10;
           i += 8;
         }
       }
-      return duration || 5000; // fallback to 5s if no delay info found
+      return duration || 5000;
     }
 
     loadAd();
