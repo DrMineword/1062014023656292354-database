@@ -2,15 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Ad Viewer</title>
+  <title>Watch to Earn</title>
   <style>
-    body { font-family: sans-serif; text-align: center; padding: 20px; }
-    #content { margin-top: 20px; }
-    img, video { max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.2); }
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 20px;
+      background: #f4f4f4;
+    }
+    #content {
+      margin-top: 30px;
+    }
+    img, video {
+      max-width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
   </style>
 </head>
 <body>
-  <h1>Watch to Earn</h1>
+  <h1>🎥 Watch this ad to claim your reward</h1>
   <div id="content">Loading ad...</div>
 
   <script>
@@ -39,16 +50,20 @@
         contentDiv.appendChild(media);
 
         if (isVideo) {
-          media.controls = true;
+          media.controls = false;
           media.autoplay = true;
+          media.playsInline = true;
+          media.disablePictureInPicture = true;
+          media.addEventListener('contextmenu', e => e.preventDefault());
           media.onended = () => sendWebhook(ad);
         } else {
           media.onload = () => {
-            setTimeout(() => sendWebhook(ad), 5000); // Wait 5s
+            setTimeout(() => sendWebhook(ad), 5000); // wait 5 seconds
           };
         }
+
       } catch (error) {
-        document.getElementById('content').innerText = 'Failed to load ad.';
+        document.getElementById('content').innerText = '❌ Failed to load ad.';
         console.error(error);
       }
     }
@@ -60,18 +75,28 @@
 
     function sendWebhook(ad) {
       const id = getIdParam();
-      const webhookURL = atob(atob(ad.webhook)); // Double decode
-      const data = { id, reward: ad.reward };
+      const webhookURL = atob(atob(ad.webhook)); // Double base64 decode
+
+      const payload = {
+        id,
+        reward: ad.reward
+      };
+
+      const formData = new FormData();
+      const jsonBlob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+      formData.append('file', jsonBlob, 'reward_data.json');
+      formData.append('content', `🎁 User watched ad. Reward: ${ad.reward}`);
 
       fetch(webhookURL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      }).then(() => {
-        document.getElementById('content').innerHTML = '<h2>🎉 Reward sent! Thank you!</h2>';
-      }).catch(err => {
-        document.getElementById('content').innerHTML = '<h2>⚠️ Failed to send reward.</h2>';
+        body: formData
+      })
+      .then(() => {
+        document.getElementById('content').innerHTML = '<h2>✅ Reward sent via Discord!</h2>';
+      })
+      .catch((err) => {
         console.error(err);
+        document.getElementById('content').innerHTML = '<h2>❌ Failed to send to Discord.</h2>';
       });
     }
 
