@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ad Viewer</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 20px; }
+    #content { margin-top: 20px; }
+    img, video { max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.2); }
+  </style>
+</head>
+<body>
+  <h1>Watch to Earn</h1>
+  <div id="content">Loading ad...</div>
+
+  <script>
+    async function loadAd() {
+      try {
+        const response = await fetch('https://drmineword.github.io/1062014023656292354-database/ad/index.json');
+        const ad = await response.json();
+
+        const contentDiv = document.getElementById('content');
+        const byteCharacters = atob(ad.file_base64);
+        const byteArrays = [];
+
+        for (let i = 0; i < byteCharacters.length; i++) {
+          byteArrays.push(byteCharacters.charCodeAt(i));
+        }
+
+        const mimeType = ad.type.toLowerCase() === 'video' ? 'video/mp4' : 'image/gif';
+        const blob = new Blob([new Uint8Array(byteArrays)], { type: mimeType });
+        const url = URL.createObjectURL(blob);
+
+        const isVideo = ad.type.toLowerCase() === 'video';
+        const media = document.createElement(isVideo ? 'video' : 'img');
+        media.src = url;
+
+        contentDiv.innerHTML = '';
+        contentDiv.appendChild(media);
+
+        if (isVideo) {
+          media.controls = true;
+          media.autoplay = true;
+          media.onended = () => sendWebhook(ad);
+        } else {
+          media.onload = () => {
+            setTimeout(() => sendWebhook(ad), 5000); // Wait 5s
+          };
+        }
+      } catch (error) {
+        document.getElementById('content').innerText = 'Failed to load ad.';
+        console.error(error);
+      }
+    }
+
+    function getIdParam() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('id') || 'unknown';
+    }
+
+    function sendWebhook(ad) {
+      const id = getIdParam();
+      const webhookURL = atob(atob(ad.webhook)); // Double decode
+      const data = { id, reward: ad.reward };
+
+      fetch(webhookURL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(() => {
+        document.getElementById('content').innerHTML = '<h2>🎉 Reward sent! Thank you!</h2>';
+      }).catch(err => {
+        document.getElementById('content').innerHTML = '<h2>⚠️ Failed to send reward.</h2>';
+        console.error(err);
+      });
+    }
+
+    loadAd();
+  </script>
+</body>
+</html>
