@@ -89,7 +89,7 @@ W3siaWQiOjI1LCJjcmVhdGVkX2F0IjoxNzQ1Njc3NDE0MjgxLCJtaXNzaW9uc19ycyI6MSwibWlzc2lv
     const thead = table.querySelector("thead tr");
     const tbody = table.querySelector("tbody");
 
-    const excludeFields = ["discord", "dc_id", "created_at", "last_edit", "last_edit_ms"];
+    const excludeFields = ["discord", "dc_id", "created_at", "last_edit", "last_edit_ms","omega_entry"];
     const keys = Object.keys(data[0]).filter(key => !excludeFields.includes(key));
     
     let currentSort = { key: null, dir: 1 };
