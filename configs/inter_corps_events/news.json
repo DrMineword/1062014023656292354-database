@@ -1,5 +1,5 @@
 {
-  "id":"first_news",
-  "msg":"## The journal is now available to everyone!!\n\nHere you will find news, leaderboards, event progress, notes and tips.",
-  "silence":false
+  "id":"finally",
+  "msg":"<@&1135025989932548187> webhook has finally been set up\nBig thanks to <@586771653187600385>",
+  "silence":true
 }
