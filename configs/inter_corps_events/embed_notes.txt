@@ -1,1 +1,1 @@
-- The news here is updated every 2 minutes, with data being updated every 10 minutes
+- The news messages is updated every 2 minutes, with data being updated every 10 minutes
