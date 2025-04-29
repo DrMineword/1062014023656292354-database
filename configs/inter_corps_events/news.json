@@ -1,4 +1,5 @@
 {
   "id":"ID#0",
-  "msg":"initiating commit"
+  "msg":"initiating commit",
+  "silence":false
 }
