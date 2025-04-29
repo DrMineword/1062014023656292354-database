@@ -8,6 +8,53 @@
             "base": "100000"
         }
     },
+"name": {
+    "1": [
+      "Fall",
+      "Return",
+      "Revenge",
+      "Rise",
+      "Wrath",
+      "Collapse",
+      "Echoes",
+      "Awakening",
+      "Rebirth",
+      "Curse",
+      "Judgment",
+      "Resurgence",
+      "Downfall",
+      "Descent",
+      "Ruin",
+      "Rebellion",
+      "Retaliation",
+      "Counterattack",
+      "Retribution",
+      "Strike",
+      "Nightfall",
+      "Bloodshed",
+      "Shadow",
+      "Assault",
+      "Aftermath",
+      "Vengeance",
+      "Legacy",
+      "Annihilation",
+      "Breaking",
+      "Outbreak"
+    ],
+    "2": [
+      "Cerberus Sentinel",
+      "Cerberus Guardian",
+      "Cerberus Interceptor",
+      "Cerberus Colossus",
+      "Cerberus Destroyer",
+      "Cerberus Bomber",
+      "Cerberus Phoenix",
+      "Cerberus Storm",
+      "Cerberus Ghosts",
+      "Cerberus Hydra",
+      "Cerberus Carrier"
+    ]
+  },
     "multiplier": "2.0",
     "max-stars": "2",
     "rs-arr": [
