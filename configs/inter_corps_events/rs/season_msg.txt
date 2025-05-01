@@ -1,5 +1,5 @@
 ## $SeasonName
 **$SeasonName** has just started!!
 
-In this **#$SeasonId** season, a special additional boost to the **x$xboost** multiplier will be given to red stars of **$rslvl** level!!
+In this **#$SeasonId** season, a special additional boost to the multiplier of **x$xboost** will be given to red stars of **$rslvl** level!!
 -# <@&1102283319187607702>
