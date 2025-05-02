@@ -1,5 +1,5 @@
 {
-  "id":"???",
-  "msg":"```\n53 79 73 74 65 6D 20 77 68 69 74 65 20 73 74 61 72 20 70 69 6E 67 20 73 74 61 74 75 73 3A 20 53 54 41 4E 44 20 42 59\n```",
-  "silence":false
+  "id":"news fix",
+  "msg":"## Hades Star Maintence Result\nThe following things have been added to webhook messages:\n**All events type:**\n- Corporation id and name\nWebhook messages now have something like this:\n```json\n\"Corporation\":{\"CorporationID\":\"3de5259ba12509e4d02854f1414caacf3d0aaaf79f417b9d843ff20ca35863dd\",\"CorporationName\":\"Atlas Star llc.\"}```Which is completely useless to us\n**WhiteStarStarted**\n- The payload should now have the slot number where the scan took place\nWe gonna use it to better alert players about star was found, issue: I have no idea how it look in payload\n\n## Misc\n- Special Inter-Federation RS Event\nBecause of that I often announce many things, and I ping you all accept my apologies\nAs a reward for securing victory in **Mission Judgment of Cerberus Interceptor**, for all red stars until the end of the event (<t:1746068628:F> <t:1746068628:R>) the bonus multiplier was set to **x3.25**\n\n- Holidays Coming Up:\n> <t:1746050460:D> <t:1746050460:t> - <t:1746136740:t> [Labour Day]  \n> <t:1746136860:D> <t:1746136860:t> - <t:1746223140:t> [Flag Day (Poland)]  \n> <t:1746223260:D> <t:1746223260:t> - <t:1746309540:t> [Constitution Day (Poland)]\nThere is a high chance that you will receive some bonuses during these time periods\n-# (Timestamp show date for UTC+2, Poland time zone, discord will show it in your current time zone)\n\n***News from <t:1746004026:D> <t:1746003600:t> provided by <@987284796789116949>!***",
+  "silence":true
 }
