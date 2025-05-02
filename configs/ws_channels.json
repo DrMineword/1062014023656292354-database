@@ -1,0 +1,96 @@
+{
+  "data_channel": {
+    "edd3ac94ea8ee1cf441e904ff29c48c21fa5db83af6eb5a6e83ae236b3872b22": {
+      "_0": "abc",
+      "_1": "def",
+      "_corporation": {
+        "tag": "Osmium",
+        "name": "Osmium Star llc",
+        "id": "edd3ac94ea8ee1cf441e904ff29c48c21fa5db83af6eb5a6e83ae236b3872b22"
+      }
+    },
+    "f6cd5aed527efed3a402f931784d68b5b7201b317118a60bd3d81b551ee87330": {
+      "_0": "abc",
+      "_1": "def",
+      "_corporation": {
+        "tag": "Black",
+        "name": "Black Star llc.",
+        "id": "f6cd5aed527efed3a402f931784d68b5b7201b317118a60bd3d81b551ee87330"
+      }
+    },
+    "3de5259ba12509e4d02854f1414caacf3d0aaaf79f417b9d843ff20ca35863dd": {
+      "_0": "abc",
+      "_1": "def",
+      "_corporation": {
+        "tag": "Atlas",
+        "name": "Atlas Star llc.",
+        "id": "3de5259ba12509e4d02854f1414caacf3d0aaaf79f417b9d843ff20ca35863dd"
+      }
+    },
+    "89b20821cb6e619dced74a6e153a1d3ceafa70b1035fb7d61a6920d375e49f50": {
+      "_0": "abc",
+      "_1": "def",
+      "_corporation": {
+        "tag": "Winter",
+        "name": "Winter Star llc",
+        "id": "89b20821cb6e619dced74a6e153a1d3ceafa70b1035fb7d61a6920d375e49f50"
+      }
+    },
+    "3dd4906939827fa7537a3e95f8d75948c06b75a98f3c4aab253ea79857d2ce81": {
+      "_0": "abc",
+      "_1": "def",
+      "_corporation": {
+        "tag": "Death",
+        "name": "Death Star llc.",
+        "id": "3dd4906939827fa7537a3e95f8d75948c06b75a98f3c4aab253ea79857d2ce81"
+      }
+    }
+  },
+  "data_ping": {
+    "edd3ac94ea8ee1cf441e904ff29c48c21fa5db83af6eb5a6e83ae236b3872b22": {
+      "_0": "abc",
+      "_1": "def",
+      "_corporation": {
+        "tag": "Osmium",
+        "name": "Osmium Star llc",
+        "id": "edd3ac94ea8ee1cf441e904ff29c48c21fa5db83af6eb5a6e83ae236b3872b22"
+      }
+    },
+    "f6cd5aed527efed3a402f931784d68b5b7201b317118a60bd3d81b551ee87330": {
+      "_0": "abc",
+      "_1": "def",
+      "_corporation": {
+        "tag": "Black",
+        "name": "Black Star llc.",
+        "id": "f6cd5aed527efed3a402f931784d68b5b7201b317118a60bd3d81b551ee87330"
+      }
+    },
+    "3de5259ba12509e4d02854f1414caacf3d0aaaf79f417b9d843ff20ca35863dd": {
+      "_0": "abc",
+      "_1": "def",
+      "_corporation": {
+        "tag": "Atlas",
+        "name": "Atlas Star llc.",
+        "id": "3de5259ba12509e4d02854f1414caacf3d0aaaf79f417b9d843ff20ca35863dd"
+      }
+    },
+    "89b20821cb6e619dced74a6e153a1d3ceafa70b1035fb7d61a6920d375e49f50": {
+      "_0": "abc",
+      "_1": "def",
+      "_corporation": {
+        "tag": "Winter",
+        "name": "Winter Star llc",
+        "id": "89b20821cb6e619dced74a6e153a1d3ceafa70b1035fb7d61a6920d375e49f50"
+      }
+    },
+    "3dd4906939827fa7537a3e95f8d75948c06b75a98f3c4aab253ea79857d2ce81": {
+      "_0": "abc",
+      "_1": "def",
+      "_corporation": {
+        "tag": "Death",
+        "name": "Death Star llc.",
+        "id": "3dd4906939827fa7537a3e95f8d75948c06b75a98f3c4aab253ea79857d2ce81"
+      }
+    }
+  }
+}
