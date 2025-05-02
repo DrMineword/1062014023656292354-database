@@ -65,8 +65,7 @@
     },
     "draw": {
       "banner": [
-        "https://drmineword.github.io/1062014023656292354-database/files/images/ws-end_new/sacrifice3.png",
-        "https://drmineword.github.io/1062014023656292354-database/files/images/ws-end_new/sacrifice4.png"
+        "https://drmineword.github.io/1062014023656292354-database/files/images/ws_end/bg_space.webp"
       ],
       "sound": {
         "file_url": "https://drmineword.github.io/1062014023656292354-database/files/sounds/Stalemate.mp3",
