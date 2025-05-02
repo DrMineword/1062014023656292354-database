@@ -1,0 +1,119 @@
+{
+  "economy-multiplier": "0.35",
+  "data_result": {
+    "edd3ac94ea8ee1cf441e904ff29c48c21fa5db83af6eb5a6e83ae236b3872b22": {
+      "log": "",
+      "_corporation": {
+        "tag": "Osmium",
+        "name": "Osmium Star llc"
+      }
+    },
+    "f6cd5aed527efed3a402f931784d68b5b7201b317118a60bd3d81b551ee87330": {
+      "log": "",
+      "_corporation": {
+        "tag": "Black",
+        "name": "Black Star llc."
+      }
+    },
+    "3de5259ba12509e4d02854f1414caacf3d0aaaf79f417b9d843ff20ca35863dd": {
+      "log": "",
+      "_corporation": {
+        "tag": "Atlas",
+        "name": "Atlas Star llc."
+      }
+    },
+    "89b20821cb6e619dced74a6e153a1d3ceafa70b1035fb7d61a6920d375e49f50": {
+      "log": "",
+      "_corporation": {
+        "tag": "Winter",
+        "name": "Winter Star llc"
+      }
+    },
+    "3dd4906939827fa7537a3e95f8d75948c06b75a98f3c4aab253ea79857d2ce81": {
+      "log": "",
+      "_corporation": {
+        "tag": "Death",
+        "name": "Death Star llc."
+      }
+    }
+  },
+  "embed": {
+    "win": {
+      "banner": [
+        "https://drmineword.github.io/1062014023656292354-database/files/images/ws-end_new/struct-statue.png",
+        "https://drmineword.github.io/1062014023656292354-database/files/images/ws-end_new/victory2.png"
+      ],
+      "sound": {
+        "file_url": "https://drmineword.github.io/1062014023656292354-database/files/sounds/Victory.mp3",
+        "file_name": "victory.mp3"
+      }
+    },
+    "fail": {
+      "banner": [
+        "https://drmineword.github.io/1062014023656292354-database/files/images/ws-end_new/sacrifice3.png",
+        "https://drmineword.github.io/1062014023656292354-database/files/images/ws-end_new/sacrifice4.png"
+      ],
+      "sound": {
+        "file_url": "https://drmineword.github.io/1062014023656292354-database/files/sounds/Failed.mp3",
+        "file_name": "failed.mp3"
+      }
+    },
+    "draw": {
+      "banner": [
+        "https://drmineword.github.io/1062014023656292354-database/files/images/ws-end_new/sacrifice3.png",
+        "https://drmineword.github.io/1062014023656292354-database/files/images/ws-end_new/sacrifice4.png"
+      ],
+      "sound": {
+        "file_url": "https://drmineword.github.io/1062014023656292354-database/files/sounds/Stalemate.mp3",
+        "file_name": "stalemate.mp3"
+      }
+    }
+  },
+  "data_ping": {
+    "edd3ac94ea8ee1cf441e904ff29c48c21fa5db83af6eb5a6e83ae236b3872b22": {
+      "_0": "<@&1205565499040337940>",
+      "_1": "<@&1205565499040337940>",
+      "_corporation": {
+        "tag": "Osmium",
+        "name": "Osmium Star llc",
+        "id": "edd3ac94ea8ee1cf441e904ff29c48c21fa5db83af6eb5a6e83ae236b3872b22"
+      }
+    },
+    "f6cd5aed527efed3a402f931784d68b5b7201b317118a60bd3d81b551ee87330": {
+      "_0": "<@&1182032216507818075>",
+      "_1": "<@&1182032216507818075>",
+      "_corporation": {
+        "tag": "Black",
+        "name": "Black Star llc.",
+        "id": "f6cd5aed527efed3a402f931784d68b5b7201b317118a60bd3d81b551ee87330"
+      }
+    },
+    "3de5259ba12509e4d02854f1414caacf3d0aaaf79f417b9d843ff20ca35863dd": {
+      "_0": "<@&1158062743476260864>",
+      "_1": "<@&1158062743476260864>",
+      "_corporation": {
+        "tag": "Atlas",
+        "name": "Atlas Star llc.",
+        "id": "3de5259ba12509e4d02854f1414caacf3d0aaaf79f417b9d843ff20ca35863dd"
+      }
+    },
+    "89b20821cb6e619dced74a6e153a1d3ceafa70b1035fb7d61a6920d375e49f50": {
+      "_0": "<@&1291643233452953720>",
+      "_1": "<@&1291643233452953720>",
+      "_corporation": {
+        "tag": "Winter",
+        "name": "Winter Star llc",
+        "id": "89b20821cb6e619dced74a6e153a1d3ceafa70b1035fb7d61a6920d375e49f50"
+      }
+    },
+    "3dd4906939827fa7537a3e95f8d75948c06b75a98f3c4aab253ea79857d2ce81": {
+      "_0": "<@&1182032325215780955>",
+      "_1": "<@&1199779376724721684>",
+      "_corporation": {
+        "tag": "Death",
+        "name": "Death Star llc.",
+        "id": "3dd4906939827fa7537a3e95f8d75948c06b75a98f3c4aab253ea79857d2ce81"
+      }
+    }
+  }
+}
