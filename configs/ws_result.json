@@ -1,5 +1,10 @@
 {
   "economy-multiplier": "0.35",
+"respones": {
+  "_3": "%F0%9F%9F%A6%20**White%20Star%20Draw**%0AA%20tactical%20deadlock.%0ABoth%20corporations%20walk%20away%20with%20scars%20%E2%80%94%20and%20lessons.%0ANext%20time%2C%20we%20aim%20for%20total%20relic%20control.",
+  "_2": "%F0%9F%9F%B3%20**White%20Star%20Lost**%0AMission%20failed.%0AOur%20corporation%20was%20outmaneuvered%20and%20outmatched.%0AThe%20relics%20now%20power%20our%20rivals%E2%80%99%20dominion%20%E2%80%94%20we%20regroup%20and%20prepare%20for%20the%20next%20star.",
+  "_1": "%F0%9F%9F%A9%20**White%20Star%20Victory**%0AVictory%20secured%21%0AThrough%20coordination%20and%20dominance%2C%20we%E2%80%99ve%20claimed%20the%20relics%20and%20the%20system.%0AOur%20corporation%E2%80%99s%20name%20echoes%20across%20the%20sector."
+},
   "data_result": {
     "edd3ac94ea8ee1cf441e904ff29c48c21fa5db83af6eb5a6e83ae236b3872b22": {
       "log": "",
