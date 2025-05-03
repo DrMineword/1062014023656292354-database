@@ -1,6 +1,7 @@
 {
     "path": "1062014023656292354-database/contents/xano/leaderboard.json",
 "commit":"CustomVersion_1.beta at $now",
+"max": 10,
     "data": [
         {
             "key": "id",
@@ -15,7 +16,7 @@
             "sort": {
                 "path": "eco_points",
                 "type": "number",
-                "asc": true
+                "asc": false
             }
         },
 {
@@ -23,7 +24,7 @@
             "sort": {
                 "path": "total_rs_points",
                 "type": "number",
-                "asc": true
+                "asc": false
             }
         },
 {
@@ -31,7 +32,7 @@
             "sort": {
                 "path": "ms_in_rs",
                 "type": "number",
-                "asc": true
+                "asc": false
             }
         },
 {
@@ -39,7 +40,7 @@
             "sort": {
                 "path": "ms_in_ws",
                 "type": "number",
-                "asc": true
+                "asc": false
             }
         },
 {
@@ -47,7 +48,7 @@
             "sort": {
                 "path": "RS_EVENT_SEASON__37",
                 "type": "number",
-                "asc": true
+                "asc": false
             }
         }
     ]
