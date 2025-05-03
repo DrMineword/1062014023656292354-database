@@ -64,7 +64,40 @@
             "Cerberus Ghosts",
             "Cerberus Hydra",
             "Cerberus Carrier"
-        ]
+        ],
+        "s1": [
+    "the Rise of {x}",
+    "{x} Rising",
+    "the {adj} {x}",
+    "{x} Unleashed",
+    "Revenge of the {x}",
+    "{x}, but Angrier",
+    "{x} 2: Electric Boogaloo",
+    "the Ballad of {x}",
+    "Project {x}",
+    "the Shadow of the {x}",
+    "the Curse of the {x}",
+    "{x}: Origins",
+    "the March of the {x}",
+    "Operation {x}",
+    "the Chronicles of the {x}",
+    "the Last {x}",
+    "the Legend of the {x}",
+    "the Call of the {x}",
+    "{x}: Beyond Time",
+    "the {x} Gambit",
+    "{x} vs. the Galaxy",
+    "the {x} Protocol",
+    "Echoes of the {x}",
+    "the Age of the {x}",
+    "the Fall of {x}",
+    "the Ascension of the {x}"
+],
+"s2": [
+    "Flaming", "Cursed", "Glorious", "Mild", "Haunted", "Beige",
+    "Ancient", "Disgruntled", "Chaotic", "Forsaken", "Quantum",
+    "Moist", "Reckless", "Draconic", "Galactic", "Suspicious"
+]
     },
     "multiplier": "2.25",
     "max-stars": "3",
