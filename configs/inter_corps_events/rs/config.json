@@ -51,6 +51,19 @@
             "Cerberus Ghosts",
             "Cerberus Hydra",
             "Cerberus Carrier"
+        ],
+"s": [
+            "Cerberus Sentinel",
+            "Cerberus Guardian",
+            "Cerberus Interceptor",
+            "Cerberus Colossus",
+            "Cerberus Destroyer",
+            "Cerberus Bomber",
+            "Cerberus Phoenix",
+            "Cerberus Storm",
+            "Cerberus Ghosts",
+            "Cerberus Hydra",
+            "Cerberus Carrier"
         ]
     },
     "multiplier": "2.25",
