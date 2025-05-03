@@ -1,0 +1,13 @@
+{
+    "path": "1062014023656292354-database/contents/xano/leaderboard.json",
+    "data": [
+        {
+            "key": "id",
+            "sort": {
+                "path": "id",
+                "type": "number",
+                "asc": true
+            }
+        }
+    ]
+}
