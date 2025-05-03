@@ -9,6 +9,46 @@
                 "type": "number",
                 "asc": true
             }
+        },
+{
+            "key": "eco",
+            "sort": {
+                "path": "eco_points",
+                "type": "number",
+                "asc": true
+            }
+        },
+{
+            "key": "rs_points_total",
+            "sort": {
+                "path": "total_rs_points",
+                "type": "number",
+                "asc": true
+            }
+        },
+{
+            "key": "rs_ms",
+            "sort": {
+                "path": "ms_in_rs",
+                "type": "number",
+                "asc": true
+            }
+        },
+{
+            "key": "ws_ms",
+            "sort": {
+                "path": "ms_in_ws",
+                "type": "number",
+                "asc": true
+            }
+        },
+{
+            "key": "rs_event",
+            "sort": {
+                "path": "RS_EVENT_SEASON__37",
+                "type": "number",
+                "asc": true
+            }
         }
     ]
 }
