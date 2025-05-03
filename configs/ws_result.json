@@ -7,35 +7,35 @@
 },
   "data_result": {
     "edd3ac94ea8ee1cf441e904ff29c48c21fa5db83af6eb5a6e83ae236b3872b22": {
-      "log": "1367836681558032394",
+      "log": "1205564833873928302",
       "_corporation": {
         "tag": "Osmium",
         "name": "Osmium Star llc"
       }
     },
     "f6cd5aed527efed3a402f931784d68b5b7201b317118a60bd3d81b551ee87330": {
-      "log": "",
+      "log": "1183808519040925756",
       "_corporation": {
         "tag": "Black",
         "name": "Black Star llc."
       }
     },
     "3de5259ba12509e4d02854f1414caacf3d0aaaf79f417b9d843ff20ca35863dd": {
-      "log": "",
+      "log": "1183808410060341269",
       "_corporation": {
         "tag": "Atlas",
         "name": "Atlas Star llc."
       }
     },
     "89b20821cb6e619dced74a6e153a1d3ceafa70b1035fb7d61a6920d375e49f50": {
-      "log": "",
+      "log": "1291646000980693044",
       "_corporation": {
         "tag": "Winter",
         "name": "Winter Star llc"
       }
     },
     "3dd4906939827fa7537a3e95f8d75948c06b75a98f3c4aab253ea79857d2ce81": {
-      "log": "",
+      "log": "1183807721728917605",
       "_corporation": {
         "tag": "Death",
         "name": "Death Star llc."
@@ -75,7 +75,7 @@
   },
   "data_ping": {
     "edd3ac94ea8ee1cf441e904ff29c48c21fa5db83af6eb5a6e83ae236b3872b22": {
-      "_0": "Fuck you <@925299896528023573>",
+      "_0": "<@&1205565499040337940>",
       "_1": "<@&1205565499040337940>",
       "_corporation": {
         "tag": "Osmium",
