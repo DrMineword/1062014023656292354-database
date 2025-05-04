@@ -1,4 +1,4 @@
--# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+-# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 ## Special Inter-Federation RS Event
 **Just started**
 From now until <t:$secends:F> (`$days days`) as part of the event:
@@ -12,4 +12,4 @@ _Energy accumulation of red stars is required to defend against the enemy_
 Gain a total of **$targetduration** of red star durations to receive a reward of **$rewardwin <:GigaPoints:1359234808471093519>**, failure will equal the loss of a total of **x$rewardfail** of the amount of GigaPoints held by the Federal Bank at the end of the event
 
 **Good luck Players**
--# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+-# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
