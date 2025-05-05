@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>JSON HTML + Script64 Loader</title>
+</head>
+<body>
+  <p>Loading content...</p>
+
+  <script>
+    (async () => {
+      const getParam = name => new URLSearchParams(location.search).get(name);
+      const decodeBase64 = str => {
+        try {
+          return atob(str.trim());
+        } catch (e) {
+          console.error("Base64 decode error:", e);
+          return null;
+        }
+      };
+
+      const encodedUrl = getParam("data");
+      if (!encodedUrl) {
+        document.body.innerHTML = "<h2>Error: Missing ?data= parameter.</h2>";
+        return;
+      }
+
+      const targetUrl = decodeURIComponent(atob(encodedUrl));
+
+      try {
+        const res = await fetch(targetUrl);
+        const json = await res.json();
+
+        if (!json.html64) {
+          document.body.innerHTML = "<h2>Error: JSON missing 'html64'</h2>";
+          return;
+        }
+
+        const htmlDecoded = decodeBase64(json.html64);
+        const scriptDecoded = json.script64 ? json.script64.trim() : "";
+
+        // Inject the HTML, and add inline JS that injects script64 into the new context
+        document.open();
+        document.write(`
+          ${htmlDecoded}
+          <script>
+            (function(){
+              try {
+                const script = atob(${JSON.stringify(scriptDecoded)});
+                const s = document.createElement('script');
+                s.textContent = script;
+                document.body.appendChild(s);
+              } catch(e) {
+                console.error("Injected script64 error:", e);
+              }
+            })();
+          <\/script>
+        `);
+        document.close();
+      } catch (err) {
+        document.body.innerHTML = "<h2>Error loading JSON.</h2><pre>" + err + "</pre>";
+        console.error(err);
+      }
+    })();
+  </script>
+</body>
+</html>
