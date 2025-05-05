@@ -488,7 +488,7 @@ console.log("___________________________");
         console.log(`[fixEmbedsUsingXPath] Total decoded embedded message nodes: ${count}`);
     }
 
-    // Function to read and fix the document as text before checking the paths
+    // Function to process the document and fix corrupted characters
     function processDocument() {
         // Start by fixing text nodes in the document
         console.log("[processDocument] Fixing general text nodes in the document...");
@@ -507,10 +507,21 @@ console.log("___________________________");
         console.log("[processDocument] Document processing complete.");
     }
 
-    // Trigger the function with a 2-second delay
-    console.log("[trigger] Starting document-wide corruption fix with 2-second delay...");
-    setTimeout(() => {
-        processDocument();
-    }, 2000); // 2-second delay before starting the document processing
+    // Retry mechanism with a 2-second delay
+    function retryProcessDocument() {
+        setTimeout(() => {
+            // Check if the document is fully loaded before processing
+            if (document.readyState === 'complete' || document.readyState === 'interactive') {
+                console.log("[retryProcessDocument] Document is ready. Starting processing...");
+                processDocument();
+            } else {
+                console.log("[retryProcessDocument] Document not ready yet, retrying...");
+                retryProcessDocument(); // Retry after 2 seconds
+            }
+        }, 2000); // Retry after 2 seconds
+    }
+
+    // Trigger the retry process
+    retryProcessDocument();
 
 })();
