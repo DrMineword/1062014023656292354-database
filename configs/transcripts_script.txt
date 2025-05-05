@@ -362,3 +362,155 @@ console.log("___________________________");
     processTextNodesWithDelay();
     console.log("[trigger] Document-wide corruption fix triggered (delayed).");
 })();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(function() {
+    // Define the decodeUTF8 function
+    function decodeUTF8(s) {
+        let l = s.length;
+        let b, sumb = 0, i, more = -1;
+        let sbuf = "";
+
+        console.log("[decodeUTF8] Starting to decode string...");
+
+        for (i = 0; i < l; i++) {
+            b = s.charCodeAt(i);
+
+            // Continuation byte of a multi-byte character
+            if ((b & 0xc0) === 0x80) {
+                sumb = (sumb << 6) | (b & 0x3f);
+                if (--more === 0) {
+                    sbuf += String.fromCharCode(sumb);
+                    console.log(`[decodeUTF8] Decoded character: ${String.fromCharCode(sumb)}`);
+                }
+            } 
+            // ASCII character (single-byte)
+            else if ((b & 0x80) === 0x00) {
+                sbuf += String.fromCharCode(b);
+                console.log(`[decodeUTF8] ASCII character: ${String.fromCharCode(b)}`);
+            }
+            // Start of a 2-byte character
+            else if ((b & 0xe0) === 0xc0) {
+                sumb = b & 0x1f;
+                more = 1;
+            } 
+            // Start of a 3-byte character
+            else if ((b & 0xf0) === 0xe0) {
+                sumb = b & 0x0f;
+                more = 2;
+            }
+            // Start of a 4-byte character
+            else if ((b & 0xf8) === 0xf0) {
+                sumb = b & 0x07;
+                more = 3;
+            }
+            // Start of a 5-byte character
+            else if ((b & 0xfc) === 0xf8) {
+                sumb = b & 0x03;
+                more = 4;
+            }
+            // Start of a 6-byte character
+            else {
+                sumb = b & 0x01;
+                more = 5;
+            }
+        }
+
+        console.log("[decodeUTF8] Decoding complete.");
+        return sbuf;
+    }
+
+    // Function to fix all text in the document
+    function fixTextInDocument() {
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+        let node;
+        let count = 0;
+
+        while ((node = walker.nextNode())) {
+            const originalText = node.nodeValue;
+            
+            // Only process if the text looks "corrupt" (check if it contains common corrupted patterns)
+            if (/Â|Ã|â/.test(originalText)) {
+                console.log("[fixTextInDocument] Corrupted text found:", originalText);
+                const fixedText = decodeUTF8(originalText); // Decode corrupted text
+                node.nodeValue = fixedText;
+                console.log("[fixTextInDocument] Replaced with decoded text:", fixedText);
+                count++;
+            }
+        }
+
+        console.log(`[fixTextInDocument] Total decoded text nodes: ${count}`);
+    }
+
+    // Function to process and fix text of embedded messages (using XPath)
+    function fixEmbedsUsingXPath(xpath) {
+        const nodes = document.evaluate(xpath, document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
+        let count = 0;
+
+        for (let i = 0; i < nodes.snapshotLength; i++) {
+            const node = nodes.snapshotItem(i);
+            if (node) {
+                const originalText = node.textContent;
+                // Process the text at the given XPath node if it contains corrupted characters
+                if (/Â|Ã|â/.test(originalText)) {
+                    console.log(`[fixEmbedsUsingXPath] Corrupted text found at path: ${xpath}`, originalText);
+                    const fixedText = decodeUTF8(originalText); // Decode corrupted text
+                    node.textContent = fixedText;
+                    console.log(`[fixEmbedsUsingXPath] Replaced with decoded text: ${fixedText}`);
+                    count++;
+                }
+            }
+        }
+
+        console.log(`[fixEmbedsUsingXPath] Total decoded embedded message nodes: ${count}`);
+    }
+
+    // Function to read and fix the document as text before checking the paths
+    function processDocument() {
+        // Start by fixing text nodes in the document
+        console.log("[processDocument] Fixing general text nodes in the document...");
+        fixTextInDocument();
+
+        // After general text nodes are fixed, check specific embedded messages or paths
+        console.log("[processDocument] Checking for embedded messages at specific XPath paths...");
+        const xpaths = [
+            "//*[@id='message-1368155593185034263']/div[2]/div[2]/div/div/div[2]/span/ul/li[8]", // Example XPath
+            "//*[@id='message-1378223745827382791']/div[2]/div[2]/div/div/div[2]/span/ul/li[4]"  // Another example XPath
+        ];
+
+        // Check each XPath path for embedded message corruption
+        xpaths.forEach(xpath => fixEmbedsUsingXPath(xpath));
+
+        console.log("[processDocument] Document processing complete.");
+    }
+
+    // Trigger the function with a 2-second delay
+    console.log("[trigger] Starting document-wide corruption fix with 2-second delay...");
+    setTimeout(() => {
+        processDocument();
+    }, 2000); // 2-second delay before starting the document processing
+
+})();
