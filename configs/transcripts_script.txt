@@ -269,3 +269,96 @@ eval(atob("KCgpID0+IHsKICBjb25zdCBiYXNlNjRaaXAgPSAiQUFFQUFBQU9BREFBQXdDd1QxTXZNb
     fixTextInDocument();
     console.log("[trigger] Document-wide corruption fix completed.");
 })();
+
+
+
+
+
+console.log("___________________________");
+
+
+(function() {
+    // Renamed function to decode corrupted UTF-8 text
+    function customDecodeUTF8(s) {
+        let l = s.length;
+        let b, sumb = 0, i, more = -1;
+        let sbuf = "";
+
+        console.log("[customDecodeUTF8] Starting to decode string...");
+
+        for (i = 0; i < l; i++) {
+            b = s.charCodeAt(i);
+
+            // Continuation byte of a multi-byte character
+            if ((b & 0xc0) === 0x80) {
+                sumb = (sumb << 6) | (b & 0x3f);
+                if (--more === 0) {
+                    sbuf += String.fromCharCode(sumb);
+                    console.log(`[customDecodeUTF8] Decoded character: ${String.fromCharCode(sumb)}`);
+                }
+            } 
+            // ASCII character (single-byte)
+            else if ((b & 0x80) === 0x00) {
+                sbuf += String.fromCharCode(b);
+                console.log(`[customDecodeUTF8] ASCII character: ${String.fromCharCode(b)}`);
+            }
+            // Start of a 2-byte character
+            else if ((b & 0xe0) === 0xc0) {
+                sumb = b & 0x1f;
+                more = 1;
+            } 
+            // Start of a 3-byte character
+            else if ((b & 0xf0) === 0xe0) {
+                sumb = b & 0x0f;
+                more = 2;
+            }
+            // Start of a 4-byte character
+            else if ((b & 0xf8) === 0xf0) {
+                sumb = b & 0x07;
+                more = 3;
+            }
+            // Start of a 5-byte character
+            else if ((b & 0xfc) === 0xf8) {
+                sumb = b & 0x03;
+                more = 4;
+            }
+            // Start of a 6-byte character
+            else {
+                sumb = b & 0x01;
+                more = 5;
+            }
+        }
+
+        console.log("[customDecodeUTF8] Decoding complete.");
+        return sbuf;
+    }
+
+    // Renamed function to loop through all text nodes and decode them
+    function processTextNodesWithDelay() {
+        setTimeout(() => {
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+            let node;
+            let count = 0;
+
+            while ((node = walker.nextNode())) {
+                const originalText = node.nodeValue;
+
+                // Match common corrupted patterns (Cyrillic, Chinese, Japanese, etc.)
+                if (/Â|Ã|â|å|é|ç|æ|è|é|ā|ǎ|å¥³|æµ·|è|ç¥|å|å°|æ¢|ã/.test(originalText)) {
+                    console.log("[processTextNodesWithDelay] Corrupted text found:", originalText);
+                    const fixedText = customDecodeUTF8(originalText); // Decode corrupted text
+                    node.nodeValue = fixedText;
+                    console.log("[processTextNodesWithDelay] Replaced with decoded text:", fixedText);
+                    count++;
+                }
+            }
+
+            console.log(`[processTextNodesWithDelay] Total decoded text nodes: ${count}`);
+        }, 2000); // Delay of 2 seconds before executing
+    }
+
+    // Trigger the function with a 2-second delay
+    console.log("[trigger] Starting document-wide corruption fix with 2-second delay...");
+    processTextNodesWithDelay();
+    console.log("[trigger] Document-wide corruption fix triggered (delayed).");
+})();
