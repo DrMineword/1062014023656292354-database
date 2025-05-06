@@ -475,3 +475,39 @@ console.log("___________________________");
     retryProcessDocument();
 
 })();
+
+
+
+
+
+
+
+(function fixBrokenUTF8() {
+  function fixMojibake(text) {
+    try {
+      const bytes = Array.from(text).map(c => c.charCodeAt(0));
+      const buffer = new Uint8Array(bytes);
+      return new TextDecoder('utf-8').decode(buffer);
+    } catch (e) {
+      return text;
+    }
+  }
+
+  function processTextNodes(node) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const original = node.nodeValue;
+      const fixed = fixMojibake(original);
+
+      if (original !== fixed) {
+        console.log('Fixed:', original, '→', fixed);
+        node.nodeValue = fixed;
+      }
+    } else {
+      for (let child of node.childNodes) {
+        processTextNodes(child);
+      }
+    }
+  }
+
+  processTextNodes(document.body);
+})();
