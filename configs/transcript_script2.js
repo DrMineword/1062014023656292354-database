@@ -511,3 +511,107 @@ console.log("___________________________");
 
   processTextNodes(document.body);
 })();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(function replaceCorruptedElementText() {
+  const delaySeconds = 3;
+
+  // Simple mojibake detector — catches common corrupted byte patterns
+  function isCorruptedText(text) {
+    return /(?:Ã|Â|¤|¢|à|±|«|»|�){2,}/.test(text);
+  }
+
+  function processElementText(el) {
+    if (!el.children.length && el.textContent.trim()) {
+      const original = el.textContent.trim();
+      if (isCorruptedText(original)) {
+        console.warn(`🚫 Corruption in <${el.tagName.toLowerCase()}>: "${original}"`);
+        el.textContent = '[DATA CORRUPTED]';
+        console.log(`🔁 Replaced content → "[DATA CORRUPTED]"`);
+      }
+    }
+  }
+
+  setTimeout(() => {
+    console.log(`⏳ Scanning for corrupted inner text values...`);
+    let scanned = 0, replaced = 0;
+
+    document.querySelectorAll('*').forEach(el => {
+      if (!el.children.length && el.textContent.trim()) {
+        scanned++;
+        const before = el.textContent;
+        processElementText(el);
+        if (el.textContent !== before) replaced++;
+      }
+    });
+
+    console.log(`✅ Done. Elements scanned: ${scanned}, Replaced: ${replaced}`);
+  }, delaySeconds * 1000);
+})();
+
+
+(function replaceCorruptedGroupsInAnyElement() {
+  const delaySeconds = 3;
+
+  // Simple mojibake detector for corrupted groups of characters (like Ã³, à¤…, etc.)
+  function isCorruptedGroup(text) {
+    return /(?:Ã|Â|¤|¢|à|±|«|»|�){2,}/.test(text);
+  }
+
+  // Function to find and replace corrupted groups in text
+  function replaceCorruptedGroupsInText(text) {
+    return text.replace(/(?:Ã|Â|¤|¢|à|±|«|»|�){2,}/g, '[DATA CORRUPTED]');
+  }
+
+  // Process each element's text nodes
+  function processElement(el) {
+    el.childNodes.forEach(node => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        const originalContent = node.nodeValue.trim();
+        
+        if (originalContent && isCorruptedGroup(originalContent)) {
+          console.warn(`🚫 Corruption detected in <${el.tagName.toLowerCase()}>: "${originalContent}"`);
+
+          const fixedContent = replaceCorruptedGroupsInText(originalContent);
+          node.nodeValue = fixedContent;
+
+          console.log(`🔁 Replaced corrupted groups in <${el.tagName.toLowerCase()}>: "${fixedContent}"`);
+        }
+      }
+    });
+  }
+
+  setTimeout(() => {
+    console.log(`⏳ Scanning for corrupted groups in all HTML elements...`);
+    let scanned = 0, replaced = 0;
+
+    // Select all elements
+    document.querySelectorAll('*').forEach(el => {
+      scanned++;
+      const before = el.textContent;
+      processElement(el);
+      if (el.textContent !== before) replaced++;
+    });
+
+    console.log(`✅ Scan complete. Elements scanned: ${scanned}, Replaced: ${replaced}`);
+  }, delaySeconds * 1000);
+})();
