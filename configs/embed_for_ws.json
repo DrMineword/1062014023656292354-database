@@ -16,7 +16,7 @@
         "art": "4pqr"
     },
     "txt": {
-        "part1": "- $PREFIX $NAME $WINS$EMOJIWINS $LOSE$EMOJILOSE $DRAW$EMOJIDRAW",
+        "part1": "- $PREFIX $NAME ($WINS$EMOJIWINS $LOSE$EMOJILOSE $DRAW$EMOJIDRAW)",
         "part2": "```$START $TIMEVAL $START $SECOND $BLU ($SCOREBLU) - $RED ($SCORERED)```",
         "part3": {
             "yes": "Artefact boost end at <t:$SEC:D> <t:$SEC:t> (<t:$SEC:R>)",
