@@ -1,4 +1,6 @@
 **(#($place)) ($startid)**
+- Level/Dark
+> **($lvl)**
 - Players:
 > **($players)**
 - Duration:
