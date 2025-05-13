@@ -1,4 +1,4 @@
-**(#($place)) ($startid)**
+**(#($place))**
 - Level/Dark
 > **($lvl)**
 - Players:
