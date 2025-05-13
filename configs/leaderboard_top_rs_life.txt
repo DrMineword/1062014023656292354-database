@@ -1,0 +1,7 @@
+**(#($place)) ($startid)**
+- Players:
+> **($players)**
+- Duration:
+> ($life)
+- Ended
+> <t:($end_unix):D> <t:($end_unix):t>
