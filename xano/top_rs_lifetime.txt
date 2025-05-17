@@ -11,6 +11,16 @@
 
 **(#2)**
 - Level/Dark
+> **9/true**
+- Players:
+> **Sej, Gravy, Börk**
+- Duration:
+> `31 minutes, 25 seconds`
+- Ended
+> <t:1747448890:D> <t:1747448890:t>
+
+**(#3)**
+- Level/Dark
 > **3/false**
 - Players:
 > **whywhywhywhyyyyy**
@@ -19,7 +29,7 @@
 - Ended
 > <t:1747128877:D> <t:1747128877:t>
 
-**(#3)**
+**(#4)**
 - Level/Dark
 > **7/false**
 - Players:
@@ -29,7 +39,7 @@
 - Ended
 > <t:1747084541:D> <t:1747084541:t>
 
-**(#4)**
+**(#5)**
 - Level/Dark
 > **9/true**
 - Players:
@@ -38,13 +48,3 @@
 > `23 minutes, 13 seconds`
 - Ended
 > <t:1747273116:D> <t:1747273116:t>
-
-**(#5)**
-- Level/Dark
-> **9/true**
-- Players:
-> **Sej, Gravy**
-- Duration:
-> `23 minutes, 12 seconds`
-- Ended
-> <t:1747078347:D> <t:1747078347:t>
