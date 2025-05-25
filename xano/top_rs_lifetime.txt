@@ -21,6 +21,16 @@
 
 **(#3)**
 - Level/Dark
+> **9/true**
+- Players:
+> **Sej, Börk, Rider21**
+- Duration:
+> `30 minutes, 11 seconds`
+- Ended
+> <t:1748193746:D> <t:1748193746:t>
+
+**(#4)**
+- Level/Dark
 > **8/false**
 - Players:
 > **DrMineword**
@@ -29,7 +39,7 @@
 - Ended
 > <t:1748074813:D> <t:1748074813:t>
 
-**(#4)**
+**(#5)**
 - Level/Dark
 > **3/false**
 - Players:
@@ -38,13 +48,3 @@
 > `25 minutes, 57 seconds`
 - Ended
 > <t:1747128877:D> <t:1747128877:t>
-
-**(#5)**
-- Level/Dark
-> **9/true**
-- Players:
-> **Sej, Porqman**
-- Duration:
-> `25 minutes, 53 seconds`
-- Ended
-> <t:1748064986:D> <t:1748064986:t>
