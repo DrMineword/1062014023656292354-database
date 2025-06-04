@@ -61,6 +61,16 @@
 
 **(#7)**
 - Level/Dark
+> **5/false**
+- Players:
+> **Nova, 08jordanc**
+- Duration:
+> `28 minutes, 35 seconds`
+- Ended
+> <t:1749037822:D> <t:1749037822:t>
+
+**(#8)**
+- Level/Dark
 > **8/false**
 - Players:
 > **DrMineword**
@@ -69,7 +79,7 @@
 - Ended
 > <t:1748074813:D> <t:1748074813:t>
 
-**(#8)**
+**(#9)**
 - Level/Dark
 > **3/false**
 - Players:
@@ -79,7 +89,7 @@
 - Ended
 > <t:1747128877:D> <t:1747128877:t>
 
-**(#9)**
+**(#10)**
 - Level/Dark
 > **8/false**
 - Players:
@@ -88,13 +98,3 @@
 > `25 minutes, 53 seconds`
 - Ended
 > <t:1748423159:D> <t:1748423159:t>
-
-**(#10)**
-- Level/Dark
-> **9/true**
-- Players:
-> **Sej, Porqman**
-- Duration:
-> `25 minutes, 53 seconds`
-- Ended
-> <t:1748064986:D> <t:1748064986:t>
