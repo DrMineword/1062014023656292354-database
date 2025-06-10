@@ -1,0 +1,16 @@
+{
+  "WhiteStarID": "d9b2585ab169cd01ca7567a82910568767f9a6815727f3fd1ec70d8e9b16a929",
+  "Opponent": {
+    "CorporationID": "3de5259ba12509e4d02854f1414caacf3d0aaaf79f417b9d843ff20ca35863dd",
+    "CorporationName": "Atlas Star llc."
+  },
+  "OurScore": 12,
+  "OpponentScore": 24,
+  "XPGained": 40,
+  "Corporation": {
+    "CorporationID": "3dd4906939827fa7537a3e95f8d75948c06b75a98f3c4aab253ea79857d2ce81",
+    "CorporationName": "Death Star llc."
+  },
+  "EventType": "WhiteStarEnded",
+  "Timestamp": "2025-06-10T17:30:23.2938532Z"
+}
