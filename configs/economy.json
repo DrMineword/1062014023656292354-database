@@ -6,7 +6,7 @@
         "divide_value": "0.1"
     },
     "multipliers": {
-        "base": "2.75"
+        "base": "1.35"
     },
     "economy": {
         "name": "GigaPoints",
